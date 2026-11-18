@@ -10,7 +10,7 @@ async function getMovies() {
   box.innerHTML = "<p>Loading movies...</p>";
 
   try {
-    let url = `${API_URL}/trending/movie/week?api_key=${API_KEY}&language=hi-IN`;
+    let url = `${API_URL}/trending/movie/week?api_key=${API_KEY}&language=en-US`;
 
     if (category !== "All") {
       const genres = {
