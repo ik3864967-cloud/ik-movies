@@ -20,7 +20,7 @@ async function getMovies() {
         Romance: 10749
       };
 
-      url = `${API_URL}/discover/movie?api_key=${API_KEY}&with_genres=${genres[category]}&language=hi-IN&sort_by=popularity.desc`;
+      url = `${API_URL}/discover/movie?api_key=${API_KEY}&with_genres=${genres[category]}&language=en-US&sort_by=popularity.desc`;
     }
 
     const response = await fetch(url);
