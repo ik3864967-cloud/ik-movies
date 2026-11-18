@@ -1,118 +1,187 @@
-
-<!DOCTYPE html>
+DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>IK MOVIES</title>
+
 <style>
-*{box-sizing:border-box}
-body{
- margin:0;background:#101116;color:white;
- font-family:Arial,sans-serif;padding-bottom:70px
+* {
+  box-sizing: border-box;
 }
-header{
- padding:20px;display:flex;
- justify-content:space-between;align-items:center
+
+body {
+  margin: 0;
+  background: #101116;
+  color: white;
+  font-family: Arial, sans-serif;
+  padding-bottom: 75px;
 }
-.logo{font-size:25px;font-weight:bold;color:#ffba35}
-.search{padding:0 18px}
-input{
- width:100%;padding:14px;border:0;
- border-radius:12px;background:#242630;color:white
+
+header {
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
-h3{padding:0 18px;margin-top:25px}
-.categories{
- display:flex;gap:10px;overflow:auto;padding:0 18px
+
+.logo {
+  font-size: 25px;
+  font-weight: bold;
+  color: #ffba35;
 }
-.categories button{
- border:0;border-radius:20px;padding:10px 17px;
- background:#292b35;color:white;white-space:nowrap
+
+.search {
+  padding: 0 18px;
 }
-.categories button.active{background:#ffba35;color:black}
-.hero{padding:18px}
-.banner{
- height:190px;border-radius:17px;
- background:linear-gradient(90deg,#151923,#45404b);
- display:flex;flex-direction:column;justify-content:end;
- padding:20px
+
+input {
+  width: 100%;
+  padding: 14px;
+  border: 0;
+  border-radius: 12px;
+  background: #242630;
+  color: white;
+  font-size: 16px;
 }
-.banner h2{margin:0 0 8px}
-.movies{
- display:grid;grid-template-columns:repeat(2,1fr);
- gap:15px;padding:0 18px
+
+h3 {
+  padding: 0 18px;
+  margin-top: 25px;
 }
-.movie{background:#20222b;border-radius:12px;overflow:hidden}
-.movie img{width:100%;height:190px;object-fit:cover}
-.movie p{padding:0 10px;font-size:14px}
-nav{
- position:fixed;bottom:0;left:0;width:100%;
- display:flex;justify-content:space-around;
- padding:16px;background:#20222b
+
+.categories {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  padding: 0 18px;
 }
-nav span{font-size:13px;color:#ffba35}
+
+.categories button {
+  border: 0;
+  border-radius: 20px;
+  padding: 10px 17px;
+  background: #292b35;
+  color: white;
+  white-space: nowrap;
+}
+
+.categories button.active {
+  background: #ffba35;
+  color: black;
+}
+
+.hero {
+  padding: 18px;
+}
+
+.banner {
+  height: 190px;
+  border-radius: 17px;
+  background: linear-gradient(90deg,#151923,#45404b);
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  padding: 20px;
+}
+
+.banner h2 {
+  margin: 0 0 8px;
+}
+
+.movies {
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+  gap: 15px;
+  padding: 0 18px;
+}
+
+.movie {
+  background: #20222b;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.movie img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+}
+
+.movie p {
+  padding: 0 10px;
+  font-size: 14px;
+}
+
+.rating {
+  color: #ffba35;
+}
+
+nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  padding: 16px;
+  background: #20222b;
+}
+
+nav span {
+  font-size: 13px;
+  color: #ffba35;
+}
 </style>
 </head>
+
 <body>
+
 <header>
- <div class="logo">IK MOVIES 🎬</div>
- <div>☰</div>
+  <div class="logo">IK MOVIES 🎬</div>
+  <div>☰</div>
 </header>
 
 <div class="search">
- <input id="search" placeholder="Search Movies..." oninput="filterMovies()">
+  <input
+    id="search"
+    placeholder="Search Movies..."
+    oninput="filterMovies()"
+  >
 </div>
 
 <h3>Categories</h3>
+
 <div class="categories">
- <button class="active" onclick="filterCat('All',this)">All</button>
- <button onclick="filterCat('Action',this)">Action</button>
- <button onclick="filterCat('Comedy',this)">Comedy</button>
- <button onclick="filterCat('Horror',this)">Horror</button>
- <button onclick="filterCat('Romance',this)">Romance</button>
+  <button class="active" onclick="filterCat('All',this)">All</button>
+  <button onclick="filterCat('Action',this)">Action</button>
+  <button onclick="filterCat('Comedy',this)">Comedy</button>
+  <button onclick="filterCat('Horror',this)">Horror</button>
+  <button onclick="filterCat('Romance',this)">Romance</button>
 </div>
 
 <div class="hero">
- <div class="banner">
-  <h2>Discover Movies</h2>
-  <p>Watch your favourite movies</p>
- </div>
+  <div class="banner">
+    <h2>Discover Movies</h2>
+    <p>Explore your favourite movies</p>
+  </div>
 </div>
 
 <h3>🔥 Trending Movies</h3>
-<div class="movies" id="movies"></div>
+
+<div class="movies" id="movies">
+  <p>Loading movies...</p>
+</div>
 
 <nav>
- <span>⌂ Home</span>
- <span>🔥 Trending</span>
- <span>♡ Favorites</span>
- <span>☻ Profile</span>
+  <span>⌂ Home</span>
+  <span>🔥 Trending</span>
+  <span>♡ Favorites</span>
+  <span>☻ Profile</span>
 </nav>
 
-<script>
-const data=[
- {name:"Sample Action",cat:"Action"},
- {name:"Sample Comedy",cat:"Comedy"},
- {name:"Sample Horror",cat:"Horror"},
- {name:"Sample Romance",cat:"Romance"}
-];
-let category="All";
-function render(){
- const q=document.getElementById("search").value.toLowerCase();
- document.getElementById("movies").innerHTML=data
- .filter(m=>(category==="All"||m.cat===category)&&m.name.toLowerCase().includes(q))
- .map(m=>`<div class="movie">
- <div style="height:190px;background:#303443;display:grid;place-items:center">🎬</div>
- <p>${m.name}</p></div>`).join("");
-}
-function filterCat(c,b){
- category=c;
- document.querySelectorAll(".categories button").forEach(x=>x.classList.remove("active"));
- b.classList.add("active");render();
-}
-function filterMovies(){render()}
-render();
-</script>
-  <script src="script.js"></script>
+<script src="script.js"></script>
+
 </body>
 </html>
+
